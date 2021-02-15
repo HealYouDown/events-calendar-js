@@ -17,7 +17,7 @@ After `events_calendar.js` include, you will have to initalize the calendar.
 const element = document.getElementById("#calendar");
 const options = {};
 
-const  calendar = new  EventsCalendar(element, options);
+const calendar = new  EventsCalendar(element, options);
 ```
 You will get returned a EventsCalendar object, which you can further use, if needed.
 
