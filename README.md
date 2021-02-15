@@ -1,7 +1,6 @@
 
 # Events Calendar JS
 ![](/example/screenshot.png?raw=True)
-
 Events Calendar is a small JavaScript class that implements a full functioning events calendar. It is written in plain JS and supports all major browsers. Internet Explorer is **not** supported.
 It is up to the developer to implement a display for the events, the calendar only handles the date parts and adding a little dot to the day for each event.
 
