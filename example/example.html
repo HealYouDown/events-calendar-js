@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../events_calendar.css">
+    <style>
+        html {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        main {
+            display: flex;
+            flex-flow: column;
+            height: 100%
+        }
+
+        .events-calendar {
+            padding: 0.5em;
+        }
+
+        #events-list-wrapper {
+            border-top: 1px solid #cacaca;
+            flex-grow: 1;
+            padding: 0 0.5em;
+        }
+
+        .no-events-message {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0.5em;
+        }
+
+        .events-date {
+            display: block;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-top: 0.5em;
+        }
+
+        .event {
+            display: flex;
+            flex-flow: column;
+            border-bottom: 1px dashed #cacaca;
+            padding: 0.5em 0.7em;
+        }
+
+        .event-title {
+            font-weight: 550;
+        }
+
+        .event-description {
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="events-calendar" id="calendar"></div>
+        <div id="events-list-wrapper"></div>
+    </main>
+    
+    <script src="../events_calendar.js"></script>
+    <script>
+        function htmlToElement(html) {
+            const template = document.createElement("template");
+            template.innerHTML = html.trim();
+            return template.content.firstChild;
+        }
+
+        function onDayChange(date, events) {
+            // Get events list and clear it
+            const eventsListWrapperElement = document.getElementById("events-list-wrapper");
+            eventsListWrapperElement.innerHTML = "";
+
+            // Create child elements for displaying the events
+            eventsListWrapperElement.appendChild(htmlToElement(`
+                <span class="events-date">${date.toLocaleDateString()}</span>
+            `))
+
+            if (events.length === 0) {
+                eventsListWrapperElement.appendChild(htmlToElement(`
+                    <div class="no-events-message">
+                        <span>There are no events planned for this day! :-(</span>
+                    </div>
+                `))
+            } else {
+                events.forEach((event) => {
+                    eventsListWrapperElement.appendChild(htmlToElement(`
+                        <div class="event">
+                            <span class="event-title">${event.name}</span>
+                            <small class="event-description">${event.description}</small>
+                        </div>
+                    `));
+                });
+            }
+        }
+
+        const calendar = new EventsCalendar(
+            document.getElementById("calendar"), {
+                startsOnMonday: true,
+                onDayClickEvent: onDayChange,
+                events: [
+                    {
+                        name: "Test Event",
+                        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et",
+                        startDate: "2021-02-13",
+                        endDate: "2021-02-15",
+                        color: "#ff0000",
+                    },
+                    {
+                        name: "Test Event #2",
+                        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et",
+                        startDate: "2021-02-15",
+                        endDate: "2021-02-15",
+                        color: "blue",
+                    },
+                    {
+                        name: "Test Event #3",
+                        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et",
+                        startDate: "2021-02-15",
+                        endDate: "2021-02-15",
+                        color: "green",
+                    },
+                    {
+                        name: "Test Event #4",
+                        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et",
+                        startDate: "2021-02-25",
+                        endDate: "2021-03-4",
+                        color: "orange",
+                    },
+                ]
+            }
+        );
+    </script>
+</body>
+</html>

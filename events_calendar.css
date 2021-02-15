@@ -1,0 +1,94 @@
+.events-calendar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Month and Year header */
+.events-calendar-month-year-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: 0.9em;
+}
+
+.events-calendar-month-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+.events-calendar-month-year-label {
+    font-size: 1.2em;
+}
+
+/* Weekday header */
+.events-calendar-weekday-names-wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.events-calendar-weekday-name {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Weekdays */
+.event-calendar-weekday-wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    flex-grow: 1;
+}
+
+.event-calendar-weekday {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    color: #6b7280;
+    min-height: 4em;
+}
+
+.event-calendar-weekday-day-number {
+    margin-bottom: 0.2em;
+    /* Hardcoded width and height, so that each number is aligned equally */
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.event-calendar-weekday-day-number:hover, .event-calendar-weekday-day-number:active {
+    background: #e0e0e0;
+    border-radius: 50%;
+}
+
+.event-calendar-weekday.before {
+    color: #d1d5db;
+}
+
+.event-calendar-weekday.today {
+    color: #111827;
+    font-weight: bold;
+}
+
+/* Events */
+.event-calendar-weekday-event-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 0.8em;
+}
+
+.event-calendar-weekday-event {
+    height: 0.4em;
+    width: 0.4em;
+    border-radius: 50%;
+    margin: 0 0.1em;
+}
